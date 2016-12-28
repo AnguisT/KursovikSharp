@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KursovikTPModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="KursovikTP1" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Administrator" EntityType="KursovikTPModel.Administrator" />
+    <EntitySet Name="Applicant" EntityType="KursovikTPModel.Applicant" />
+    <EntitySet Name="Employer" EntityType="KursovikTPModel.Employer" />
+    <EntitySet Name="Jobs" EntityType="KursovikTPModel.Jobs" />
+    <EntitySet Name="People" EntityType="KursovikTPModel.People" />
+    <EntitySet Name="Resume" EntityType="KursovikTPModel.Resume" />
+    <EntitySet Name="Role" EntityType="KursovikTPModel.Role" />
+    <AssociationSet Name="FK_Administrator_People" Association="KursovikTPModel.FK_Administrator_People">
+      <End Role="People" EntitySet="People" />
+      <End Role="Administrator" EntitySet="Administrator" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Applicant_People" Association="KursovikTPModel.FK_Applicant_People">
+      <End Role="People" EntitySet="People" />
+      <End Role="Applicant" EntitySet="Applicant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resume_Applicant" Association="KursovikTPModel.FK_Resume_Applicant">
+      <End Role="Applicant" EntitySet="Applicant" />
+      <End Role="Resume" EntitySet="Resume" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employer_People" Association="KursovikTPModel.FK_Employer_People">
+      <End Role="People" EntitySet="People" />
+      <End Role="Employer" EntitySet="Employer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobs_Employer" Association="KursovikTPModel.FK_Jobs_Employer">
+      <End Role="Employer" EntitySet="Employer" />
+      <End Role="Jobs" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="fk_People_Role" Association="KursovikTPModel.fk_People_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="People" EntitySet="People" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Administrator">
+    <Key>
+      <PropertyRef Name="idAdministrator" />
+    </Key>
+    <Property Name="idAdministrator" Type="Int32" Nullable="false" />
+    <Property Name="Communication" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="People" Relationship="KursovikTPModel.FK_Administrator_People" FromRole="Administrator" ToRole="People" />
+  </EntityType>
+  <EntityType Name="Applicant">
+    <Key>
+      <PropertyRef Name="idApplicant" />
+    </Key>
+    <Property Name="idApplicant" Type="Int32" Nullable="false" />
+    <Property Name="TimeAction" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="People" Relationship="KursovikTPModel.FK_Applicant_People" FromRole="Applicant" ToRole="People" />
+    <NavigationProperty Name="Resume" Relationship="KursovikTPModel.FK_Resume_Applicant" FromRole="Applicant" ToRole="Resume" />
+  </EntityType>
+  <EntityType Name="Employer">
+    <Key>
+      <PropertyRef Name="idEmployer" />
+    </Key>
+    <Property Name="idEmployer" Type="Int32" Nullable="false" />
+    <Property Name="TimeAction" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="People" Relationship="KursovikTPModel.FK_Employer_People" FromRole="Employer" ToRole="People" />
+    <NavigationProperty Name="Jobs" Relationship="KursovikTPModel.FK_Jobs_Employer" FromRole="Employer" ToRole="Jobs" />
+  </EntityType>
+  <EntityType Name="Jobs">
+    <Key>
+      <PropertyRef Name="idJobs" />
+    </Key>
+    <Property Name="idJobs" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="idEmployer" Type="Int32" Nullable="false" />
+    <Property Name="NameJobs" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Salary" Type="Int32" Nullable="false" />
+    <Property Name="Requirements" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Duties" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Conditions" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TypeEmployment" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Communication" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="TimeCreation" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Employer" Relationship="KursovikTPModel.FK_Jobs_Employer" FromRole="Jobs" ToRole="Employer" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="idPeople" />
+    </Key>
+    <Property Name="idPeople" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="idRole" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="SecondName" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="MiddleName" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Administrator" Relationship="KursovikTPModel.FK_Administrator_People" FromRole="People" ToRole="Administrator" />
+    <NavigationProperty Name="Applicant" Relationship="KursovikTPModel.FK_Applicant_People" FromRole="People" ToRole="Applicant" />
+    <NavigationProperty Name="Employer" Relationship="KursovikTPModel.FK_Employer_People" FromRole="People" ToRole="Employer" />
+    <NavigationProperty Name="Role" Relationship="KursovikTPModel.fk_People_Role" FromRole="People" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Resume">
+    <Key>
+      <PropertyRef Name="idResume" />
+    </Key>
+    <Property Name="idResume" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="idApplicant" Type="Int32" Nullable="false" />
+    <Property Name="Locations" Type="String" Nullable="false" MaxLength="80" Unicode="true" FixedLength="false" />
+    <Property Name="DateBirthday" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Communication" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Education" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Position" Type="String" Nullable="false" MaxLength="60" Unicode="true" FixedLength="false" />
+    <Property Name="Experience" Type="String" Nullable="false" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="ProffesionalSkills" Type="String" Nullable="false" MaxLength="400" Unicode="true" FixedLength="false" />
+    <Property Name="OtherSkills" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="PersonalQualites" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="TimeCreation" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Applicant" Relationship="KursovikTPModel.FK_Resume_Applicant" FromRole="Resume" ToRole="Applicant" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="idRole" />
+    </Key>
+    <Property Name="idRole" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="NameRole" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="People" Relationship="KursovikTPModel.fk_People_Role" FromRole="Role" ToRole="People" />
+  </EntityType>
+  <Association Name="FK_Administrator_People">
+    <End Role="People" Type="KursovikTPModel.People" Multiplicity="1" />
+    <End Role="Administrator" Type="KursovikTPModel.Administrator" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="People">
+        <PropertyRef Name="idPeople" />
+      </Principal>
+      <Dependent Role="Administrator">
+        <PropertyRef Name="idAdministrator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Applicant_People">
+    <End Role="People" Type="KursovikTPModel.People" Multiplicity="1" />
+    <End Role="Applicant" Type="KursovikTPModel.Applicant" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="People">
+        <PropertyRef Name="idPeople" />
+      </Principal>
+      <Dependent Role="Applicant">
+        <PropertyRef Name="idApplicant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resume_Applicant">
+    <End Role="Applicant" Type="KursovikTPModel.Applicant" Multiplicity="1" />
+    <End Role="Resume" Type="KursovikTPModel.Resume" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applicant">
+        <PropertyRef Name="idApplicant" />
+      </Principal>
+      <Dependent Role="Resume">
+        <PropertyRef Name="idApplicant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employer_People">
+    <End Role="People" Type="KursovikTPModel.People" Multiplicity="1" />
+    <End Role="Employer" Type="KursovikTPModel.Employer" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="People">
+        <PropertyRef Name="idPeople" />
+      </Principal>
+      <Dependent Role="Employer">
+        <PropertyRef Name="idEmployer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobs_Employer">
+    <End Role="Employer" Type="KursovikTPModel.Employer" Multiplicity="1" />
+    <End Role="Jobs" Type="KursovikTPModel.Jobs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employer">
+        <PropertyRef Name="idEmployer" />
+      </Principal>
+      <Dependent Role="Jobs">
+        <PropertyRef Name="idEmployer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_People_Role">
+    <End Role="Role" Type="KursovikTPModel.Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="People" Type="KursovikTPModel.People" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="idRole" />
+      </Principal>
+      <Dependent Role="People">
+        <PropertyRef Name="idRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

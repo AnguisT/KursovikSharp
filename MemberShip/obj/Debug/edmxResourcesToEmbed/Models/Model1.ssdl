@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище TestModel" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Хранилище TestModelContainer">
+    <EntitySet Name="Role" EntityType="Хранилище TestModel.Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserProfile" EntityType="Хранилище TestModel.UserProfile" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__UserProfi__RoleI__1FCDBCEB" Association="Хранилище TestModel.FK__UserProfi__RoleI__1FCDBCEB">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserProfile" EntitySet="UserProfile" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="nchar" MaxLength="30" />
+    <Property Name="Password" Type="nchar" MaxLength="30" />
+    <Property Name="RoleId" Type="int" />
+  </EntityType>
+  <Association Name="FK__UserProfi__RoleI__1FCDBCEB">
+    <End Role="Role" Type="Хранилище TestModel.Role" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="Хранилище TestModel.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

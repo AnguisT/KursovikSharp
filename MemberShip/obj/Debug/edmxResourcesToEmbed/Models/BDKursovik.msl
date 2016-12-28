@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище KursovikTPModelContainer" CdmEntityContainer="KursovikTP1">
+    <EntitySetMapping Name="Administrator">
+      <EntityTypeMapping TypeName="KursovikTPModel.Administrator">
+        <MappingFragment StoreEntitySet="Administrator">
+          <ScalarProperty Name="idAdministrator" ColumnName="idAdministrator" />
+          <ScalarProperty Name="Communication" ColumnName="Communication" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Applicant">
+      <EntityTypeMapping TypeName="KursovikTPModel.Applicant">
+        <MappingFragment StoreEntitySet="Applicant">
+          <ScalarProperty Name="idApplicant" ColumnName="idApplicant" />
+          <ScalarProperty Name="TimeAction" ColumnName="TimeAction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employer">
+      <EntityTypeMapping TypeName="KursovikTPModel.Employer">
+        <MappingFragment StoreEntitySet="Employer">
+          <ScalarProperty Name="idEmployer" ColumnName="idEmployer" />
+          <ScalarProperty Name="TimeAction" ColumnName="TimeAction" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Jobs">
+      <EntityTypeMapping TypeName="KursovikTPModel.Jobs">
+        <MappingFragment StoreEntitySet="Jobs">
+          <ScalarProperty Name="idJobs" ColumnName="idJobs" />
+          <ScalarProperty Name="idEmployer" ColumnName="idEmployer" />
+          <ScalarProperty Name="NameJobs" ColumnName="NameJobs" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Requirements" ColumnName="Requirements" />
+          <ScalarProperty Name="Duties" ColumnName="Duties" />
+          <ScalarProperty Name="Conditions" ColumnName="Conditions" />
+          <ScalarProperty Name="TypeEmployment" ColumnName="TypeEmployment" />
+          <ScalarProperty Name="Communication" ColumnName="Communication" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TimeCreation" ColumnName="TimeCreation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="KursovikTPModel.People">
+        <MappingFragment StoreEntitySet="People">
+          <ScalarProperty Name="idPeople" ColumnName="idPeople" />
+          <ScalarProperty Name="idRole" ColumnName="idRole" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="SecondName" ColumnName="SecondName" />
+          <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Resume">
+      <EntityTypeMapping TypeName="KursovikTPModel.Resume">
+        <MappingFragment StoreEntitySet="Resume">
+          <ScalarProperty Name="idResume" ColumnName="idResume" />
+          <ScalarProperty Name="idApplicant" ColumnName="idApplicant" />
+          <ScalarProperty Name="Locations" ColumnName="Locations" />
+          <ScalarProperty Name="DateBirthday" ColumnName="DateBirthday" />
+          <ScalarProperty Name="Communication" ColumnName="Communication" />
+          <ScalarProperty Name="Education" ColumnName="Education" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="Experience" ColumnName="Experience" />
+          <ScalarProperty Name="ProffesionalSkills" ColumnName="ProffesionalSkills" />
+          <ScalarProperty Name="OtherSkills" ColumnName="OtherSkills" />
+          <ScalarProperty Name="PersonalQualites" ColumnName="PersonalQualites" />
+          <ScalarProperty Name="TimeCreation" ColumnName="TimeCreation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="KursovikTPModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="idRole" ColumnName="idRole" />
+          <ScalarProperty Name="NameRole" ColumnName="NameRole" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

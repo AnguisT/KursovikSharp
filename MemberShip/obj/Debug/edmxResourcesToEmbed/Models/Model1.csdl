@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Test" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Role" EntityType="TestModel.Role" />
+    <EntitySet Name="UserProfile" EntityType="TestModel.UserProfile" />
+    <AssociationSet Name="FK__UserProfi__RoleI__1FCDBCEB" Association="TestModel.FK__UserProfi__RoleI__1FCDBCEB">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserProfile" EntitySet="UserProfile" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="UserProfile" Relationship="TestModel.FK__UserProfi__RoleI__1FCDBCEB" FromRole="Role" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <Property Name="Password" Type="String" MaxLength="30" Unicode="true" FixedLength="true" />
+    <Property Name="RoleId" Type="Int32" />
+    <NavigationProperty Name="Role" Relationship="TestModel.FK__UserProfi__RoleI__1FCDBCEB" FromRole="UserProfile" ToRole="Role" />
+  </EntityType>
+  <Association Name="FK__UserProfi__RoleI__1FCDBCEB">
+    <End Role="Role" Type="TestModel.Role" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="TestModel.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

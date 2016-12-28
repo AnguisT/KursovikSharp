@@ -1,0 +1,104 @@
+﻿@model MemberShip.Models.Resume
+
+@{
+    ViewBag.Title = "Составление резюме";
+}
+
+<div style="text-align:center;">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Резюме</legend>
+
+        <div class="editor-label">
+            Место проживания:
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Locations)
+            @Html.ValidationMessageFor(model => model.Locations)
+        </div>
+
+        <div class="editor-label">
+            Дата рождения:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DateBirthday)
+            @Html.ValidationMessageFor(model => model.DateBirthday)
+        </div>
+
+        <div class="editor-label">
+            Номер телефона, e-mail:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Communication)
+            @Html.ValidationMessageFor(model => model.Communication)
+        </div>
+
+        <div class="editor-label">
+            Образование:
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Education)
+            @Html.ValidationMessageFor(model => model.Education)
+        </div>
+
+        <div class="editor-label">
+            Должность на которую хотите устрориться:
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Position)
+            @Html.ValidationMessageFor(model => model.Position)
+        </div>
+
+        <div class="editor-label">
+            Опыт работы:
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Experience)
+            @Html.ValidationMessageFor(model => model.Experience)
+        </div>
+
+        <div class="editor-label">
+            Проффесиональные навыки:
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.ProffesionalSkills)
+            @Html.ValidationMessageFor(model => model.ProffesionalSkills)
+        </div>
+
+        <div class="editor-label">
+            Другие навыики (знание иностранных языков, работа на компьютере и т.д.):
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.OtherSkills)
+            @Html.ValidationMessageFor(model => model.OtherSkills)
+        </div>
+
+        <div class="editor-label">
+            Личные качества:
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PersonalQualites)
+            @Html.ValidationMessageFor(model => model.PersonalQualites)
+        </div>
+
+        <input name="Login" type="hidden" value="@Html.DisplayName(User.Identity.Name)" />
+
+        <p>
+            <input type="submit" value="Добавить" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться на главную страницу", "Home", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

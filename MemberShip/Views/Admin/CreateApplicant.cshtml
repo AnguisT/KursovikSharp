@@ -1,0 +1,80 @@
+﻿@model MemberShip.Models.Applicant
+
+@{
+    ViewBag.Title = "Регистрация нового соискателя";
+}
+
+<div style="text-align:center;">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Введите данные</legend>
+
+        <div class="editor-label">
+            Логин:
+        </div>
+        <div class="editor-field">
+            <input name="Login" value="" />
+        </div>
+
+        <div class="editor-label">
+            Пароль:
+        </div>
+        <div class="editor-field">
+            <input name="Password" type="password" value="" />
+        </div>
+
+        <div class="editor-label">
+            Фамилия:
+        </div>
+        <div class="editor-field">
+            <input name="FirstName" value="" />
+        </div>
+
+        <div class="editor-label">
+            Имя:
+        </div>
+        <div class="editor-field">
+            <input name="SecondName" value="" />
+        </div>
+
+        <div class="editor-label">
+            Отчество:
+        </div>
+        <div class="editor-field">
+            <input name="MiddleName" value="" />
+        </div>
+
+        <div class="editor-label">
+            Дата  окончания действия аккаунта:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TimeAction)
+            @Html.ValidationMessageFor(model => model.TimeAction)
+        </div>
+
+        <p>
+            <input type="submit" value="Зарегестрировать" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться на главную страницу", "Home", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script type="text/javascript">
+        $("#TimeAction").datepicker({ dateFormat: 'dd.MM.yy' });
+    </script>
+}

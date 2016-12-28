@@ -1,0 +1,77 @@
+﻿@model MemberShip.Models.Jobs
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Jobs</legend>
+
+    <div class="display-label">
+        Название работы:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NameJobs)
+    </div>
+
+    <div class="display-label">
+         Зарплата:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Salary)
+    </div>
+
+    <div class="display-label">
+         Требования:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Requirements)
+    </div>
+
+    <div class="display-label">
+         Обязанности:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Duties)
+    </div>
+
+    <div class="display-label">
+         Условия работы:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Conditions)
+    </div>
+
+    <div class="display-label">
+        Тип работы:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TypeEmployment)
+    </div>
+
+    <div class="display-label">
+         Связь:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Communication)
+    </div>
+
+    <div class="display-label">
+        Общее описание:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         Время создания вакансии:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TimeCreation)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Вернуться на главную страницу", "Home", "Home")
+</p>

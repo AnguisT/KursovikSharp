@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище KursovikTPModel" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Хранилище KursovikTPModelContainer">
+    <EntitySet Name="Administrator" EntityType="Хранилище KursovikTPModel.Administrator" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Applicant" EntityType="Хранилище KursovikTPModel.Applicant" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employer" EntityType="Хранилище KursovikTPModel.Employer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Jobs" EntityType="Хранилище KursovikTPModel.Jobs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="People" EntityType="Хранилище KursovikTPModel.People" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Resume" EntityType="Хранилище KursovikTPModel.Resume" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Role" EntityType="Хранилище KursovikTPModel.Role" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Administrator_People" Association="Хранилище KursovikTPModel.FK_Administrator_People">
+      <End Role="People" EntitySet="People" />
+      <End Role="Administrator" EntitySet="Administrator" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Applicant_People" Association="Хранилище KursovikTPModel.FK_Applicant_People">
+      <End Role="People" EntitySet="People" />
+      <End Role="Applicant" EntitySet="Applicant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employer_People" Association="Хранилище KursovikTPModel.FK_Employer_People">
+      <End Role="People" EntitySet="People" />
+      <End Role="Employer" EntitySet="Employer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Jobs_Employer" Association="Хранилище KursovikTPModel.FK_Jobs_Employer">
+      <End Role="Employer" EntitySet="Employer" />
+      <End Role="Jobs" EntitySet="Jobs" />
+    </AssociationSet>
+    <AssociationSet Name="fk_People_Role" Association="Хранилище KursovikTPModel.fk_People_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="People" EntitySet="People" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Resume_Applicant" Association="Хранилище KursovikTPModel.FK_Resume_Applicant">
+      <End Role="Applicant" EntitySet="Applicant" />
+      <End Role="Resume" EntitySet="Resume" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Administrator">
+    <Key>
+      <PropertyRef Name="idAdministrator" />
+    </Key>
+    <Property Name="idAdministrator" Type="int" Nullable="false" />
+    <Property Name="Communication" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Applicant">
+    <Key>
+      <PropertyRef Name="idApplicant" />
+    </Key>
+    <Property Name="idApplicant" Type="int" Nullable="false" />
+    <Property Name="TimeAction" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Employer">
+    <Key>
+      <PropertyRef Name="idEmployer" />
+    </Key>
+    <Property Name="idEmployer" Type="int" Nullable="false" />
+    <Property Name="TimeAction" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Jobs">
+    <Key>
+      <PropertyRef Name="idJobs" />
+    </Key>
+    <Property Name="idJobs" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idEmployer" Type="int" Nullable="false" />
+    <Property Name="NameJobs" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Salary" Type="int" Nullable="false" />
+    <Property Name="Requirements" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Duties" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Conditions" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="TypeEmployment" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Communication" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="TimeCreation" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="People">
+    <Key>
+      <PropertyRef Name="idPeople" />
+    </Key>
+    <Property Name="idPeople" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idRole" Type="int" Nullable="false" />
+    <Property Name="Login" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Password" Type="varchar" Nullable="false" MaxLength="20" />
+    <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="45" />
+    <Property Name="SecondName" Type="varchar" Nullable="false" MaxLength="45" />
+    <Property Name="MiddleName" Type="varchar" Nullable="false" MaxLength="45" />
+  </EntityType>
+  <EntityType Name="Resume">
+    <Key>
+      <PropertyRef Name="idResume" />
+    </Key>
+    <Property Name="idResume" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idApplicant" Type="int" Nullable="false" />
+    <Property Name="Locations" Type="nvarchar" Nullable="false" MaxLength="80" />
+    <Property Name="DateBirthday" Type="datetime" Nullable="false" />
+    <Property Name="Communication" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Education" Type="nvarchar" Nullable="false" MaxLength="150" />
+    <Property Name="Position" Type="nvarchar" Nullable="false" MaxLength="60" />
+    <Property Name="Experience" Type="nvarchar" Nullable="false" MaxLength="300" />
+    <Property Name="ProffesionalSkills" Type="nvarchar" Nullable="false" MaxLength="400" />
+    <Property Name="OtherSkills" Type="nvarchar" MaxLength="200" />
+    <Property Name="PersonalQualites" Type="nvarchar" MaxLength="300" />
+    <Property Name="TimeCreation" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="idRole" />
+    </Key>
+    <Property Name="idRole" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="NameRole" Type="varchar" Nullable="false" MaxLength="45" />
+    <Property Name="Description" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK_Administrator_People">
+    <End Role="People" Type="Хранилище KursovikTPModel.People" Multiplicity="1" />
+    <End Role="Administrator" Type="Хранилище KursovikTPModel.Administrator" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="People">
+        <PropertyRef Name="idPeople" />
+      </Principal>
+      <Dependent Role="Administrator">
+        <PropertyRef Name="idAdministrator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Applicant_People">
+    <End Role="People" Type="Хранилище KursovikTPModel.People" Multiplicity="1" />
+    <End Role="Applicant" Type="Хранилище KursovikTPModel.Applicant" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="People">
+        <PropertyRef Name="idPeople" />
+      </Principal>
+      <Dependent Role="Applicant">
+        <PropertyRef Name="idApplicant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employer_People">
+    <End Role="People" Type="Хранилище KursovikTPModel.People" Multiplicity="1" />
+    <End Role="Employer" Type="Хранилище KursovikTPModel.Employer" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="People">
+        <PropertyRef Name="idPeople" />
+      </Principal>
+      <Dependent Role="Employer">
+        <PropertyRef Name="idEmployer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Jobs_Employer">
+    <End Role="Employer" Type="Хранилище KursovikTPModel.Employer" Multiplicity="1" />
+    <End Role="Jobs" Type="Хранилище KursovikTPModel.Jobs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employer">
+        <PropertyRef Name="idEmployer" />
+      </Principal>
+      <Dependent Role="Jobs">
+        <PropertyRef Name="idEmployer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_People_Role">
+    <End Role="Role" Type="Хранилище KursovikTPModel.Role" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="People" Type="Хранилище KursovikTPModel.People" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="idRole" />
+      </Principal>
+      <Dependent Role="People">
+        <PropertyRef Name="idRole" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Resume_Applicant">
+    <End Role="Applicant" Type="Хранилище KursovikTPModel.Applicant" Multiplicity="1" />
+    <End Role="Resume" Type="Хранилище KursovikTPModel.Resume" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applicant">
+        <PropertyRef Name="idApplicant" />
+      </Principal>
+      <Dependent Role="Resume">
+        <PropertyRef Name="idApplicant" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

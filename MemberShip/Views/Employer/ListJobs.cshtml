@@ -1,0 +1,69 @@
+﻿@model IEnumerable<MemberShip.Models.Jobs>
+
+@{
+    ViewBag.Title = "Список вакансий";
+}
+
+<div style="text-align:center;">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+@using (Html.BeginForm()) 
+{
+    <p>
+    Название работы: @Html.TextBox("search")
+    <input type="submit" value="Поиск"/></p>
+}
+
+<table>
+    <tr>
+    @if (new MyRoleProvider().IsUserInRole(User.Identity.Name, "Admin")) {
+        <th>
+            Код вакансии
+        </th>
+        <th>
+            Код работодателя
+        </th>
+    }
+        <th>
+            Название работы
+        </th>
+        <th>
+            Зарплата
+        </th>
+        <th>
+            Условия работы
+        </th>
+        <th>
+            Связь
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+    @if (new MyRoleProvider().IsUserInRole(User.Identity.Name, "Admin")) {
+        <td>
+            @Html.DisplayFor(modelItem => item.idJobs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idEmployer)
+        </td>
+    }
+        <td>
+            @Html.DisplayFor(modelItem => item.NameJobs)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Conditions)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Communication)
+        </td>
+        <td>
+            @Html.ActionLink("Полная информация", "Details", new { id=item.idJobs })
+        </td>
+    </tr>
+}
+</table>

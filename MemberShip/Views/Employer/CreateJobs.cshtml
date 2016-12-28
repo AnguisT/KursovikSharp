@@ -1,0 +1,96 @@
+﻿@model MemberShip.Models.Jobs
+
+@{
+    ViewBag.Title = "Создание вакансии";
+}
+
+<div style="text-align:center;">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Вакансия</legend>
+
+        <div class="editor-label">
+            Название работы:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NameJobs)
+            @Html.ValidationMessageFor(model => model.NameJobs)
+        </div>
+
+        <div class="editor-label">
+            Зарплата:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Salary)
+            @Html.ValidationMessageFor(model => model.Salary)
+        </div>
+
+        <div class="editor-label">
+            Требование:
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Requirements)
+            @Html.ValidationMessageFor(model => model.Requirements)
+        </div>
+
+        <div class="editor-label">
+            Обязанности:
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Duties)
+            @Html.ValidationMessageFor(model => model.Duties)
+        </div>
+
+        <div class="editor-label">
+            Условия работы:
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Conditions)
+            @Html.ValidationMessageFor(model => model.Conditions)
+        </div>
+
+        <div class="editor-label">
+            Вид занятости:
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.TypeEmployment)
+            @Html.ValidationMessageFor(model => model.TypeEmployment)
+        </div>
+
+        <div class="editor-label">
+            Связь с работодателем:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Communication)
+            @Html.ValidationMessageFor(model => model.Communication)
+        </div>
+
+        <div class="editor-label">
+            Описание работы или дополнения:
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <input name="Login" type="hidden" value="@Html.DisplayName(User.Identity.Name)" />
+
+        <p>
+            <input type="submit" value="Добавить" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернутся назад", "Home", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

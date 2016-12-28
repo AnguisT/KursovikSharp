@@ -1,0 +1,86 @@
+﻿@model MemberShip.Models.Resume
+
+@{
+    ViewBag.Title = "Полная информация по резюме";
+}
+
+<div style="text-align:center;">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+<fieldset>
+    <legend>Resume</legend>
+
+    <div class="display-label">
+        Место проживания:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Locations)
+    </div>
+
+    <div class="display-label">
+        Дата рождения:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateBirthday)
+    </div>
+
+    <div class="display-label">
+        Связь:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Communication)
+    </div>
+
+    <div class="display-label">
+        Образование:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Education)
+    </div>
+
+    <div class="display-label">
+        Предпологаемая должность:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Position)
+    </div>
+
+    <div class="display-label">
+        Опыт работы:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Experience)
+    </div>
+
+    <div class="display-label">
+        Проффесиональные навыки:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ProffesionalSkills)
+    </div>
+
+    <div class="display-label">
+         Другие навыки:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OtherSkills)
+    </div>
+
+    <div class="display-label">
+         Личные качества:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PersonalQualites)
+    </div>
+
+    <div class="display-label">
+         Время создания резюме:
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TimeCreation)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Вернуться на главную страницу", "Home", "Home")
+</p>

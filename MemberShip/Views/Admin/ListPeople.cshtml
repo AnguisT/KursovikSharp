@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MemberShip.Models.People>
+
+@{
+    ViewBag.Title = "Список пользователей";
+}
+
+<div style="text-align:center;">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+<table>
+    <tr>
+        <th>
+            Логин:
+        </th>
+        <th>
+            Фамилия:
+        </th>
+        <th>
+            Имя:
+        </th>
+        <th>
+            Отчество:
+        </th>
+        <th>
+            Роль:
+        </th>
+        <th>
+            Время работы аккаунта:
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Login)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MiddleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Role.NameRole)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applicant.TimeAction)
+            @Html.DisplayFor(modelItem => item.Employer.TimeAction)
+        </td>
+    </tr>
+}
+</table>

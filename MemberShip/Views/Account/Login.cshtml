@@ -1,0 +1,45 @@
+﻿@model MemberShip.Models.LoginModel
+
+@{
+    ViewBag.Title = "Авторизация";
+}
+
+<div class="title"><h1>@ViewBag.Title</h1></div>
+
+<h2>Используйте для входа свою учетную запись.</h2>
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Форма входа</legend>
+        
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Login)
+        </div>
+
+        <div class ="editor-field">
+            @Html.TextBoxFor(m => m.Login)
+            @Html.ValidationMessageFor(m => m.Login)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(m => m.Password)
+        </div>
+
+        <div class="editor-field">
+            @Html.PasswordFor(m => m.Password)
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+
+        <div class="editor-field">
+            @Html.CheckBoxFor(m => m.RememberMe)
+            @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+        </div>
+        <p/>
+        <input type="submit" value="Выполнить вход" />
+    </fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,30 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header>
+        <section id="login">
+            @Html.Partial("_LoginPartical")
+            @if (Request.IsAuthenticated){
+                @Html.Partial("menuPartial")
+            }
+        </section>
+    </header>
+    @RenderBody()
+    <footer>
+            <div class="content-wrapper">
+                <div class="pop">
+                    <p>&copy; @DateTime.Now.Year — Кадровое агенство</p>
+                </div>
+            </div>
+        </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

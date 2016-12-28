@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MemberShip.Models.Resume>
+
+@{
+    ViewBag.Title = "Список резюме";
+}
+
+<div style="text-align:center;">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+@using (Html.BeginForm()) 
+{
+    <p>
+    Название работы: @Html.TextBox("search")
+    <input type="submit" value="Поиск"/></p>
+}
+
+<table>
+    <tr>
+    @if (new MyRoleProvider().IsUserInRole(User.Identity.Name, "Admin")) {
+        <th>
+            Код резюме
+        </th>
+        <th>
+            Код соискателя
+        </th>
+    }
+        <th>
+            Должность
+        </th>
+        <th>
+            Опыт работы
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+    @if (new MyRoleProvider().IsUserInRole(User.Identity.Name, "Admin")) {
+        <td>
+            @Html.DisplayFor(modelItem => item.idResume)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Applicant.idApplicant)
+        </td>
+    }
+        <td>
+            @Html.DisplayFor(modelItem => item.Position)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Experience)
+        </td>
+        <td>
+            @Html.ActionLink("Полная информация", "Details", new { id=item.idResume })
+        </td>
+    </tr>
+}
+</table>
