@@ -17,13 +17,16 @@ namespace MemberShip.Controllers
         KursovikTP db = new KursovikTP();
 
         //
-        // GET: /Account/
+        // GET: /Account/Login
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
+        //
+        // Post: /Account/Login
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Login(LoginModel model, string returnUrl)
         {
@@ -31,6 +34,7 @@ namespace MemberShip.Controllers
             {
                 if (Membership.ValidateUser(model.Login, model.Password))
                 {
+                    AccountController ac = new AccountController();
                     FormsAuthentication.SetAuthCookie(model.Login, model.RememberMe);
                     if (Url.IsLocalUrl(returnUrl))
                     {
@@ -38,14 +42,44 @@ namespace MemberShip.Controllers
                     }
                     else
                     {
+                        CheckTime(model.Login);
                         return RedirectToAction("Home", "Home");
                     }
                 }
             }
-
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
             ModelState.AddModelError("", "Имя пользователя или пароль указаны неверно.");
             return View(model);
+        }
+
+        public void CheckTime(string Login)
+        {
+            using (KursovikTP db = new KursovikTP()) {
+                var user = (from u in db.People
+                            where u.Login == Login
+                            select u).SingleOrDefault();
+                var role = (from r in db.Role
+                            where r.idRole == user.idRole
+                            select r).SingleOrDefault();
+                var date = DateTime.Now;
+                if (role.NameRole == "Applicant")
+                {
+                    int result = DateTime.Compare(date.Date, user.Applicant.TimeAction.Date);
+                    if (result > 0)
+                    {
+                        user.idRole = 4;
+                    }
+                }
+                else if (role.NameRole == "Employer")
+                {
+                    int result = DateTime.Compare(date.Date, user.Employer.TimeAction.Date);
+                    if (result > 0)
+                    {
+                        user.idRole = 4;
+                    }
+                }
+                db.SaveChanges();
+            }
         }
 
         [HttpPost]

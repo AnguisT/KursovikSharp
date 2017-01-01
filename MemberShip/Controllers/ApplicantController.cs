@@ -33,7 +33,7 @@ namespace MemberShip.Controllers
         }
 
         //
-        // GET: /Applicant/Details/5
+        // GET: /Applicant/Details/
         public ActionResult Details(int id = 0)
         {
             Resume resume = db.Resume.Find(id);
@@ -75,8 +75,8 @@ namespace MemberShip.Controllers
         public int SearchId(string login)
         {
             var people = (from p in db.People
-                               where p.Login == login
-                               select p).FirstOrDefault();
+                          where p.Login == login
+                          select p).SingleOrDefault();
             return people.idPeople;
         }
 

@@ -149,7 +149,7 @@ public class MyMembershipProvider : MembershipProvider
     {
         using (KursovikTP db = new KursovikTP())
         {
-            var result = (from u in db.People where (u.Login == username && u.Password == password) select u);
+            var result = (from u in db.People where (u.Login == username && u.Password == password) select u).SingleOrDefault();
 
             if (result != null)
             {

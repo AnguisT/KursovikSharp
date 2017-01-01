@@ -1,0 +1,63 @@
+﻿@model MemberShip.Models.People
+
+@{
+    ViewBag.Title = "ExtendTime";
+}
+
+<div style="text-align:center;">
+    <h2>@ViewBag.Title</h2>
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Введите данные</legend>
+        
+        <div class="editor-label">
+            Логин
+        </div>
+        @Html.Editor("Login")
+
+        <div class="editor-label">
+            Время
+        </div>
+        @Html.Editor("Time")
+
+        <p>
+            <input id="btnDialog" type="submit" value="Продлить" />
+        </p>
+
+        <div id="DialogBox" title="Уведомление">
+            <p>Вы продлили время для пользователя </p>
+        </div>
+
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться на главную страницу", "Home", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script type="text/javascript">
+        $("#Time").datepicker({ dateFormat: 'dd.MM.yy' });
+
+        $(function () {
+            $("#DialogBox").dialog({
+                autoOpen: false,
+                width: 300,
+                height: 120,
+            });
+
+            $("#btnDialog").click(function () {
+                $("#DialogBox").dialog("open");
+            })
+        });
+    </script>
+}   

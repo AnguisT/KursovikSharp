@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
+    <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -25,6 +26,7 @@
             </div>
         </footer>
     @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery-ui-1.8.24.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

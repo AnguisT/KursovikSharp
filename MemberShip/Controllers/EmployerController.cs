@@ -70,7 +70,7 @@ namespace MemberShip.Controllers
         {
             var people = (from p in db.People
                           where p.Login == login
-                          select p).FirstOrDefault();
+                          select p).SingleOrDefault();
             return people.idPeople;
         }
 

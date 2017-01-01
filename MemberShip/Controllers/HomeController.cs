@@ -8,13 +8,12 @@ using MemberShip.Models;
 
 namespace MemberShip.Controllers
 {
-
+    [AllowAnonymous]
     public class HomeController : Controller
     {
 
         //
         // GET: /Home/
-        [Authorize]
         public ActionResult Home()
         {
             return View();
@@ -22,7 +21,6 @@ namespace MemberShip.Controllers
 
         //
         // GET: /InformationApplicant/
-        [Authorize]
         public ActionResult InformationApplicant()
         {
             return View();
@@ -30,7 +28,6 @@ namespace MemberShip.Controllers
 
         //
         // GET: /InformationEmployer/
-        [Authorize]
         public ActionResult InformationEmployer()
         {
             return View();

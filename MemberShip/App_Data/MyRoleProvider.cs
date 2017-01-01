@@ -7,24 +7,6 @@ using MemberShip.Models;
 
 public class MyRoleProvider : RoleProvider
 {
-    public static bool ValidationActivity(string Login)
-    {
-        var date = DateTime.Now;
-        using (KursovikTP db = new KursovikTP())
-        {
-            var people = (from p in db.People where p.Login == Login select p).FirstOrDefault();
-            var empl = (from e in db.Employer where e.idEmployer == people.idPeople select e).FirstOrDefault();
-            var appl = (from a in db.Applicant where a.idApplicant == people.idPeople select a).FirstOrDefault();
-            if ((empl.TimeAction < DateTime.Now) || (appl.TimeAction < DateTime.Now))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-    }
 
     public override void AddUsersToRoles(string[] usernames, string[] roleNames)
     {
@@ -73,13 +55,13 @@ public class MyRoleProvider : RoleProvider
                 // Получаем пользователя
                 var user = (from u in db.People
                             where u.Login == username
-                            select u).FirstOrDefault();
+                            select u).SingleOrDefault();
                 if (user != null)
                 {
                     // получаем роль
                     var userRole = (from r in db.Role
                                     where r.idRole == user.idRole
-                                    select r).FirstOrDefault();
+                                    select r).SingleOrDefault();
 
                     if (userRole != null)
                     {
@@ -111,12 +93,12 @@ public class MyRoleProvider : RoleProvider
             {
                 var user = (from u in db.People
                             where u.Login == username
-                            select u).FirstOrDefault();
+                            select u).SingleOrDefault();
                 if (user != null)
                 {
                     var role = (from r in db.Role
                                 where r.idRole == user.idRole
-                                select r).FirstOrDefault();
+                                select r).SingleOrDefault();
 
                     if (role.NameRole.Equals(rn))
                     {

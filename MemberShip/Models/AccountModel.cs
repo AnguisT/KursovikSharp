@@ -16,6 +16,14 @@ namespace MemberShip.Models
         }
 
         public DbSet<People> Peoples { get; set; }
+
+        public DbSet<Administrator> Administrators { get; set; }
+
+        public DbSet<Applicant> Applicants { get; set; }
+
+        public DbSet<Employer> Employers { get; set; }
+
+        public DbSet<Role> Roles { get; set; }
     }
 
     public class LoginModel

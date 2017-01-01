@@ -15,7 +15,7 @@ namespace MemberShip.Controllers
 
         //
         // GET: /Admin/
-
+        [Authorize(Roles = "Admin")]
         public ActionResult ListPeople()
         {
             var people = db.People.Include(a => a.Role).Include(a => a.Employer).Include(a => a.Applicant);
@@ -40,7 +40,7 @@ namespace MemberShip.Controllers
             AddPeople(Login, Password, FirstName, SecondName, MiddleName, "Applicant");
             var speople = (from p in db.People
                       where p.Login == Login
-                      select p).FirstOrDefault();
+                      select p).SingleOrDefault();
             applicant.idApplicant = speople.idPeople;
             if (ModelState.IsValid)
             {
@@ -69,7 +69,7 @@ namespace MemberShip.Controllers
             AddPeople(Login, Password, FirstName, SecondName, MiddleName, "Employer");
             var speople = (from p in db.People
                            where p.Login == Login
-                           select p).FirstOrDefault();
+                           select p).SingleOrDefault();
             employer.idEmployer = speople.idPeople;
             if (ModelState.IsValid)
             {
@@ -78,6 +78,43 @@ namespace MemberShip.Controllers
                 return RedirectToAction("ListPeople", "Admin");
             }
             return View(employer);
+        }
+
+        //
+        // GET: /Admin/ExtendTime
+        [Authorize(Roles = "Admin")]
+        public ActionResult ExtendTime()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Admin/ExtendTime
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ExtendTime(string Login, DateTime Time)
+        {
+            var user = (from u in db.People
+                        where u.Login == Login
+                        select u).SingleOrDefault();
+            if (user.Applicant != null)
+            {
+                var role = (from r in db.Role
+                            where r.NameRole == "Applicant"
+                            select r).SingleOrDefault();
+                user.Applicant.TimeAction = Time;
+                user.idRole = role.idRole;
+            }
+            else if (user.Employer != null)
+            {
+                var role = (from r in db.Role
+                            where r.NameRole == "Employer"
+                            select r).SingleOrDefault();
+                user.Employer.TimeAction = Time;
+                user.idRole = role.idRole;
+            }
+            db.SaveChanges();
+            return RedirectToAction("Home", "Home");
         }
 
         public void AddPeople(string Login, string Password, string FirstName, string SecondName, string MiddleName, string namerole)
@@ -90,7 +127,7 @@ namespace MemberShip.Controllers
             people.MiddleName = MiddleName;
             var role = (from r in db.Role
                         where r.NameRole == namerole
-                        select r).FirstOrDefault();
+                        select r).SingleOrDefault();
             people.idRole = role.idRole;
             db.People.Add(people);
             db.SaveChanges();
