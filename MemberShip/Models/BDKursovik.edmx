@@ -74,6 +74,7 @@
           <Property Name="Communication" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Description" Type="nvarchar" MaxLength="50" />
           <Property Name="TimeCreation" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" />
         </EntityType>
         <EntityType Name="People">
           <Key>
@@ -103,12 +104,13 @@
           <Property Name="OtherSkills" Type="nvarchar" MaxLength="200" />
           <Property Name="PersonalQualites" Type="nvarchar" MaxLength="300" />
           <Property Name="TimeCreation" Type="datetime" Nullable="false" />
+          <Property Name="Status" Type="int" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="idRole" />
           </Key>
-          <Property Name="idRole" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idRole" Type="int" Nullable="false" />
           <Property Name="NameRole" Type="varchar" Nullable="false" MaxLength="45" />
           <Property Name="Description" Type="varchar" MaxLength="200" />
         </EntityType>
@@ -191,7 +193,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="KursovikTPModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="KursovikTP1" p1:LazyLoadingEnabled="true">
+        <EntityContainer Name="KursovikTP" p1:LazyLoadingEnabled="true">
           <EntitySet Name="Administrator" EntityType="KursovikTPModel.Administrator" />
           <EntitySet Name="Applicant" EntityType="KursovikTPModel.Applicant" />
           <EntitySet Name="Employer" EntityType="KursovikTPModel.Employer" />
@@ -265,6 +267,7 @@
           <Property Name="Communication" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="TimeCreation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Int32" />
           <NavigationProperty Name="Employer" Relationship="KursovikTPModel.FK_Jobs_Employer" FromRole="Jobs" ToRole="Employer" />
         </EntityType>
         <EntityType Name="People">
@@ -299,13 +302,14 @@
           <Property Name="OtherSkills" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="PersonalQualites" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
           <Property Name="TimeCreation" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Status" Type="Int32" />
           <NavigationProperty Name="Applicant" Relationship="KursovikTPModel.FK_Resume_Applicant" FromRole="Resume" ToRole="Applicant" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="idRole" />
           </Key>
-          <Property Name="idRole" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="idRole" Type="Int32" Nullable="false" />
           <Property Name="NameRole" Type="String" Nullable="false" MaxLength="45" Unicode="false" FixedLength="false" />
           <Property Name="Description" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
           <NavigationProperty Name="People" Relationship="KursovikTPModel.fk_People_Role" FromRole="Role" ToRole="People" />
@@ -389,7 +393,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище KursovikTPModelContainer" CdmEntityContainer="KursovikTP1">
+        <EntityContainerMapping StorageEntityContainer="Хранилище KursovikTPModelContainer" CdmEntityContainer="KursovikTP">
           <EntitySetMapping Name="Administrator">
             <EntityTypeMapping TypeName="KursovikTPModel.Administrator">
               <MappingFragment StoreEntitySet="Administrator">
@@ -428,6 +432,7 @@
                 <ScalarProperty Name="Communication" ColumnName="Communication" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="TimeCreation" ColumnName="TimeCreation" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -459,6 +464,7 @@
                 <ScalarProperty Name="OtherSkills" ColumnName="OtherSkills" />
                 <ScalarProperty Name="PersonalQualites" ColumnName="PersonalQualites" />
                 <ScalarProperty Name="TimeCreation" ColumnName="TimeCreation" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

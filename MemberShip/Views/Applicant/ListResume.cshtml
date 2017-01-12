@@ -4,16 +4,19 @@
     ViewBag.Title = "Список резюме";
 }
 
-<div style="text-align:center;">
+<div class="title">
     <h2>@ViewBag.Title</h2>
 </div>
 
-@using (Html.BeginForm()) 
-{
-    <p>
-    Название работы: @Html.TextBox("search")
-    <input type="submit" value="Поиск"/></p>
-}
+<div>
+    @using (Html.BeginForm()) 
+    {
+        <p>
+            Название резюме: @Html.TextBox("search")
+            <input type="submit" value="Поиск"/>
+        </p>
+    }
+</div>
 
 <table>
     <tr>
@@ -31,6 +34,7 @@
         <th>
             Опыт работы
         </th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {

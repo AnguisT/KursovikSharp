@@ -69,6 +69,7 @@
     <Property Name="Communication" Type="nvarchar" Nullable="false" MaxLength="50" />
     <Property Name="Description" Type="nvarchar" MaxLength="50" />
     <Property Name="TimeCreation" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="int" />
   </EntityType>
   <EntityType Name="People">
     <Key>
@@ -98,12 +99,13 @@
     <Property Name="OtherSkills" Type="nvarchar" MaxLength="200" />
     <Property Name="PersonalQualites" Type="nvarchar" MaxLength="300" />
     <Property Name="TimeCreation" Type="datetime" Nullable="false" />
+    <Property Name="Status" Type="int" />
   </EntityType>
   <EntityType Name="Role">
     <Key>
       <PropertyRef Name="idRole" />
     </Key>
-    <Property Name="idRole" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idRole" Type="int" Nullable="false" />
     <Property Name="NameRole" Type="varchar" Nullable="false" MaxLength="45" />
     <Property Name="Description" Type="varchar" MaxLength="200" />
   </EntityType>

@@ -17,7 +17,15 @@ namespace MemberShip.Controllers
         // GET: /Applicant/
         public ActionResult ListResume()
         {
-            var resume = db.Resume.Include(r => r.Applicant);
+            var listResume = db.Resume.Include(r => r.Applicant);
+            List<Resume> resume = new List<Resume>();
+            foreach (var rm in listResume) 
+            {
+                if (rm.Status == 1)
+                {
+                    resume.Add(rm);
+                }
+            }
             return View(resume.ToList());
         }
 

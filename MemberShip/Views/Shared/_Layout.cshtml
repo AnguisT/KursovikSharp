@@ -6,23 +6,20 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     <link href="~/Content/themes/base/jquery.ui.all.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <header>
         <section id="login">
             @Html.Partial("_LoginPartical")
-            @if (Request.IsAuthenticated){
-                @Html.Partial("menuPartial")
-            }
+            @Html.Partial("menuPartial")
         </section>
     </header>
     @RenderBody()
     <footer>
             <div class="content-wrapper">
-                <div class="pop">
-                    <p>&copy; @DateTime.Now.Year — Кадровое агенство</p>
-                </div>
+                
             </div>
         </footer>
     @Scripts.Render("~/bundles/jquery")

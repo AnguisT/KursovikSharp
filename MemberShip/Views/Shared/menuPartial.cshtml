@@ -1,4 +1,5 @@
-﻿@Html.ActionLink("Главная страница", "Home", "Home") |
+﻿<div>
+@Html.ActionLink("Главная страница", "Home", "Home") |
 @if (new MyRoleProvider().IsUserInRole(User.Identity.Name, "Admin")) {
     @Html.ActionLink("Добавить нового соискателя", "CreateApplicant", "Admin") @:|
     @Html.ActionLink("Добавить нового работодателя", "CreateEmployer", "Admin") @:|
@@ -8,7 +9,6 @@
 else if (new MyRoleProvider().IsUserInRole(User.Identity.Name, "Applicant"))
 {
     @Html.ActionLink("Список вакансий", "ListJobs", "Employer") @:|
-    @Html.ActionLink("Список резюме", "ListResume", "Applicant") @:|
     @Html.ActionLink("Составить резюме", "CreateResume", "Applicant") @:|
 }
 else if (new MyRoleProvider().IsUserInRole(User.Identity.Name, "Employer"))
@@ -17,3 +17,4 @@ else if (new MyRoleProvider().IsUserInRole(User.Identity.Name, "Employer"))
     @Html.ActionLink("Список резюме", "ListResume", "Applicant") @:|
     @Html.ActionLink("Создать вакансию", "CreateJobs", "Employer") @:|
 }
+</div>

@@ -68,6 +68,7 @@ namespace MemberShip.Controllers
                     if (result > 0)
                     {
                         user.idRole = 4;
+                        editStatus(user.Login, role.NameRole);
                     }
                 }
                 else if (role.NameRole == "Employer")
@@ -76,6 +77,33 @@ namespace MemberShip.Controllers
                     if (result > 0)
                     {
                         user.idRole = 4;
+                        editStatus(user.Login, role.NameRole);
+                    }
+                }
+                db.SaveChanges();
+            }
+        }
+
+        public void editStatus(string Login, string role)
+        {
+            using (KursovikTP db = new KursovikTP()) {
+                var user = (from u in db.People
+                            where u.Login == Login
+                            select u).SingleOrDefault();
+                if (role == "Applicant")
+                {
+                    var resume = user.Applicant.Resume;
+                    foreach (var rm in resume)
+                    {
+                        rm.Status = 0;
+                    }
+                }
+                else if (role == "Employer")
+                {
+                    var jobs = user.Employer.Jobs;
+                    foreach (var jb in jobs)
+                    {
+                        jb.Status = 0;
                     }
                 }
                 db.SaveChanges();

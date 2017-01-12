@@ -104,6 +104,11 @@ namespace MemberShip.Controllers
                             select r).SingleOrDefault();
                 user.Applicant.TimeAction = Time;
                 user.idRole = role.idRole;
+                var resume = user.Applicant.Resume;
+                foreach (var rm in resume)
+                {
+                    rm.Status = 1;
+                }
             }
             else if (user.Employer != null)
             {
@@ -112,9 +117,19 @@ namespace MemberShip.Controllers
                             select r).SingleOrDefault();
                 user.Employer.TimeAction = Time;
                 user.idRole = role.idRole;
+                var jobs = user.Employer.Jobs;
+                foreach (var jb in jobs)
+                {
+                    jb.Status = 1;
+                }
             }
             db.SaveChanges();
             return RedirectToAction("Home", "Home");
+        }
+
+        public void editStatus(string Login)
+        {
+
         }
 
         public void AddPeople(string Login, string Password, string FirstName, string SecondName, string MiddleName, string namerole)

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="Хранилище KursovikTPModelContainer" CdmEntityContainer="KursovikTP1">
+  <EntityContainerMapping StorageEntityContainer="Хранилище KursovikTPModelContainer" CdmEntityContainer="KursovikTP">
     <EntitySetMapping Name="Administrator">
       <EntityTypeMapping TypeName="KursovikTPModel.Administrator">
         <MappingFragment StoreEntitySet="Administrator">
@@ -39,6 +39,7 @@
           <ScalarProperty Name="Communication" ColumnName="Communication" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="TimeCreation" ColumnName="TimeCreation" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -70,6 +71,7 @@
           <ScalarProperty Name="OtherSkills" ColumnName="OtherSkills" />
           <ScalarProperty Name="PersonalQualites" ColumnName="PersonalQualites" />
           <ScalarProperty Name="TimeCreation" ColumnName="TimeCreation" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
